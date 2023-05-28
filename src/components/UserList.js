@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UseUserList from './hook/UseUserList';
 
 function UserList({ users }) {
+  const { searchTerm, setSearchTerm, searchResult, handleSearch } = UseUserList(
+    users
+  );
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResult, setSearchResult] = useState(null);
-
-  const handleSearch = () => {
-    const result = users.find((user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setSearchResult(result);
-  };
 
   return (
     <div>
