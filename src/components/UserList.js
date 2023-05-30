@@ -3,42 +3,96 @@ import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import UseUserList from './hook/UseUserList';
 
-function UserList({ users }) {
-  const { searchTerm, setSearchTerm, searchResult, handleSearch } = UseUserList(
-    users
-  );
+function UserList() {
+  const {
+    searchTerm,
+    setSearchTerm,
+    searchResult,
+    handleSearch,
+    handleBack,
+    userList,
+  } = UseUserList();
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Link
+        to='/'
+        style={{
+          textDecoration: 'none',
+          alignSelf: 'flex-end',
+          marginTop: '5rem',
+          marginRight: '5rem',
+        }}
+      >
+        LOGOUT
+      </Link>
       <form
         style={{
           display: 'flex',
+
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           marginTop: '5rem',
         }}
       >
-        <Button
-          onClick={() => navigate('/add-user')}
-          style={{ alignItems: 'start', backgroundColor: 'DodgerBlue' }}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            marginBottom: '1rem',
+          }}
         >
-          Add New User
-        </Button>
+          <Button
+            onClick={() => navigate('/add-user')}
+            style={{
+              backgroundColor: '#99627A',
+              borderColor: '#99627A',
+              alignSelf: 'flex-start',
+            }}
+          >
+            Add New User
+          </Button>
+        </div>
         <div>
           <input
             type='search'
             placeholder='Search'
-            className='mb-3'
+            className='mb-3 mt-3'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ width: '25rem' }}
           />
-          <Button onClick={handleSearch}>Search</Button>
+          <Button
+            onClick={handleSearch}
+            // className='mb-3 mt-3'
+            style={{
+              backgroundColor: '#99627A',
+              borderColor: '#99627A',
+            }}
+          >
+            Search
+          </Button>
         </div>
       </form>
-
-      <Link to='/'>Go back to Home</Link>
-
+      {searchResult && (
+        <Link
+          onClick={handleBack}
+          style={{
+            textDecoration: 'none',
+            alignSelf: 'flex-start',
+            marginLeft: '5rem',
+          }}
+        >
+          BACK
+        </Link>
+      )}
       <table
         style={{
           width: '80%',
@@ -65,9 +119,14 @@ function UserList({ users }) {
               </td>
             </tr>
           ) : (
-            users.map((user) => (
+            userList.map((user) => (
               <tr key={user.id}>
-                <td style={{ border: '1px solid black', padding: '8px' }}>
+                <td
+                  style={{
+                    border: '1px solid black',
+                    padding: '8px',
+                  }}
+                >
                   <img
                     src={user.avatar}
                     alt='User Avatar'

@@ -1,52 +1,83 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-// import { useRef } from 'react';
-// import userImage from '../pictures/avatar.png';
+import { Link } from 'react-router-dom';
 import UseAddNewUser from './hook/UseAddNewUser';
 
-function AddNewUser({ users, setUsers }) {
+function AddNewUser({ setUsers }) {
   const {
     nameInputRef,
     surnameInputRef,
     emailInputRef,
     handleUpdateUsersBtn,
-  } = UseAddNewUser(users, setUsers);
-  // const nameInputRef = useRef();
-  // const surnameInputRef = useRef();
-  // const emailInputRef = useRef();
+  } = UseAddNewUser({ setUsers });
 
-  const navigate = useNavigate();
-
-  // const handleUpdateUsersBtn = (e) => {
-  //   e.preventDefault();
-
-  //   const newUser = {
-  //     id: users.length + 1, // Generate a unique ID for the new user
-  //     name: nameInputRef.current.value,
-  //     email: emailInputRef.current.value,
-  //     surname: surnameInputRef.current.value,
-  //     avatar: userImage,
-  //   };
-
-  //   setUsers((prevUsers) => [...prevUsers, newUser]);
-  //   navigate('../users');
-  // };
+  // const navigate = useNavigate();
 
   return (
-    <div>
-      <Button onClick={() => navigate('../users')}>Back</Button>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
+        <Link
+          to='/users'
+          style={{
+            textDecoration: 'none',
+            alignSelf: 'flex-end',
+            marginTop: '5rem',
+            marginLeft: '5rem',
+          }}
+        >
+          BACK
+        </Link>
+
+        <Link
+          to='/'
+          style={{
+            textDecoration: 'none',
+            alignSelf: 'flex-end',
+            marginTop: '5rem',
+            marginRight: '5rem',
+          }}
+        >
+          LOGOUT
+        </Link>
+      </div>
       <form
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: '5rem',
+          marginTop: '10rem',
         }}
       >
-        <input ref={nameInputRef} type='text' placeholder='Name' />
-        <input ref={surnameInputRef} type='text' placeholder='Surname' />
-        <input ref={emailInputRef} type='email' placeholder='Email' />
+        <input
+          ref={nameInputRef}
+          type='text'
+          placeholder='Name'
+          style={{ width: '25rem', marginBottom: '10px' }}
+        />
+        <input
+          ref={surnameInputRef}
+          type='text'
+          placeholder='Surname'
+          style={{ width: '25rem', marginBottom: '10px' }}
+        />
+        <input
+          ref={emailInputRef}
+          type='email'
+          placeholder='Email'
+          style={{ width: '25rem', marginBottom: '10px' }}
+        />
         <Button type='submit' onClick={handleUpdateUsersBtn}>
           UPDATE USERS
         </Button>

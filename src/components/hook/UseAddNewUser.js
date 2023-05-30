@@ -1,25 +1,31 @@
 import { useRef } from 'react';
 import userImage from '../../pictures/avatar.png';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../../actions/userListActions';
 
-const UseAddNewUser = ({ users, setUsers }) => {
+const UseAddNewUser = () => {
+  const dispatch = useDispatch();
+
   const nameInputRef = useRef();
   const surnameInputRef = useRef();
   const emailInputRef = useRef();
   const navigate = useNavigate();
+  const userList = useSelector((state) => state.user.userList);
 
   const handleUpdateUsersBtn = (e) => {
     e.preventDefault();
 
     const newUser = {
-      id: users.length + 1, // Generate a unique ID for the new user
+      id: userList.length + 1, // Generate a unique ID for the new user
       name: nameInputRef.current.value,
       email: emailInputRef.current.value,
       surname: surnameInputRef.current.value,
       avatar: userImage,
     };
 
-    setUsers((prevUsers) => [...prevUsers, newUser]);
+    dispatch(addUser(newUser));
+
     navigate('../users');
   };
   return {
@@ -27,8 +33,6 @@ const UseAddNewUser = ({ users, setUsers }) => {
     surnameInputRef,
     emailInputRef,
     handleUpdateUsersBtn,
-    setUsers,
-    users,
   };
 };
 
