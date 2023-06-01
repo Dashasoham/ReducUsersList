@@ -8,6 +8,7 @@ function UserList() {
     searchTerm,
     setSearchTerm,
     searchResult,
+
     handleSearch,
     handleBack,
     userList,
@@ -34,6 +35,7 @@ function UserList() {
         LOGOUT
       </Link>
       <form
+        onSubmit={handleSearch}
         style={{
           display: 'flex',
 

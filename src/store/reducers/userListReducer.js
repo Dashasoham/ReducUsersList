@@ -38,6 +38,12 @@ const userListReducer = (state = initialState, action) => {
         ...state,
         userList: [...state.userList, action.payload],
       };
+    case 'CLEAR_SEARCH_RESULT':
+      return {
+        ...state,
+        searchResult: null,
+      };
+
     default:
       return state;
   }

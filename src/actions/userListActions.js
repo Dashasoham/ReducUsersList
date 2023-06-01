@@ -26,3 +26,6 @@ export const addUser = (newUser) => {
     payload: newUser,
   };
 };
+export const clearSearchResult = () => ({
+  type: 'CLEAR_SEARCH_RESULT',
+});

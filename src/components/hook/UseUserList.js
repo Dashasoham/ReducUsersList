@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { updateSearchResult } from '../../actions/userListActions';
 
@@ -13,25 +11,33 @@ const UseUserList = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResult, setSearchResult] = useState(null);
+
   // const [list, setList] = useState(users);
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    e.preventDefault();
     const result = userList.find((user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    dispatch(updateSearchResult(result));
-
-    // setSearchResult(result);
+    if (result) {
+      dispatch(updateSearchResult(result));
+      setSearchResult(result);
+    } else {
+      return;
+    }
     setSearchTerm('');
   };
-  const navigate = useNavigate();
+
   const handleBack = () => {
-    navigate(-1);
+    dispatch(updateSearchResult(null));
+    setSearchResult(null);
   };
+
   return {
     searchTerm,
     setSearchTerm,
     searchResult,
+
     setSearchResult,
     handleSearch,
     handleBack,
