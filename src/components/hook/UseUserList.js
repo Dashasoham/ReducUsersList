@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateSearchResult } from '../../actions/userListActions';
+import { updateSearchResult } from '../../store/actions/userListActions';
 
 const UseUserList = () => {
   const dispatch = useDispatch();
-  const { list } = useSelector((state) => state.user);
+  const { list, searchResult } = useSelector((state) => state.user);
   const userList = useSelector((state) => state.user.userList);
 
   console.log(list);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResult, setSearchResult] = useState(null);
+  // const [searchResult, setSearchResult] = useState(null);
 
   // const [list, setList] = useState(users);
 
@@ -21,24 +21,26 @@ const UseUserList = () => {
     );
     if (result) {
       dispatch(updateSearchResult(result));
-      setSearchResult(result);
+      // setSearchResult(result);
     } else {
-      return;
+      // return;
+      dispatch(updateSearchResult(null));
     }
     setSearchTerm('');
   };
 
   const handleBack = () => {
     dispatch(updateSearchResult(null));
-    setSearchResult(null);
+    // setSearchResult(null);
   };
 
   return {
     searchTerm,
     setSearchTerm,
-    searchResult,
 
-    setSearchResult,
+    searchResult,
+    // setSearchResult,
+
     handleSearch,
     handleBack,
     userList,

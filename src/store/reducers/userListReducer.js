@@ -5,6 +5,7 @@ const initialState = {
   searchResult: null,
   navigation: null,
   userList: [],
+
   // navigation: {
   //   navigate: jest.fn(),
   //   goBack: jest.fn(),
@@ -17,6 +18,8 @@ const userListReducer = (state = initialState, action) => {
       return {
         ...state,
         list: action.payload,
+        searchResult: action.payload, // Update searchResult with the payload from the action
+
         // update state with search result
       };
     case actionTypes.RESET_SEARCH_RESULT:

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import userImage from '../../pictures/avatar.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser } from '../../actions/userListActions';
+import { addUser } from '../../store/actions/userListActions';
 
 const UseAddNewUser = () => {
   const dispatch = useDispatch();
