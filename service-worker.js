@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ReduxUsersList/precache-manifest.3c9c64dc39469f9ceba7ec109ae479fc.js"
+  "/ReduxUsersList/precache-manifest.d2954f1630a5abfbd66d1f03743edd80.js"
 );
 
 workbox.clientsClaim();
