@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/ReduxUsersList/static/js/runtime~main.1c26c7bc.js"
   },
   {
-    "revision": "76587045e4e9990865d5448b68864065",
+    "revision": "b7ca36accb7752f65ded495938ffbc86",
     "url": "/ReduxUsersList/index.html"
   }
 ];
